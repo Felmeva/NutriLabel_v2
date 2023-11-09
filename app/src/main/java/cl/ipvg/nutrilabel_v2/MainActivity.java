@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
     private View view1, view2;
 
-    @Override
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -54,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
 
         view1 = (View) findViewById(R.id.view);
         view2 = (View) findViewById(R.id.view2);
+
+        agregarBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
 
 
