@@ -203,8 +203,8 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="118dp"
-        android:layout_height="123dp"
+        android:layout_width="119dp"
+        android:layout_height="110dp"
         android:drawableBottom="@drawable/agregar64"
         android:text="Agregar"
         android:textAlignment="center"

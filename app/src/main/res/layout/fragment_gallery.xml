@@ -23,19 +23,19 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
-        android:layout_width="378dp"
-        android:layout_height="166dp"
+        android:layout_width="377dp"
+        android:layout_height="113dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/text_gallery"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029">
+        app:layout_constraintVertical_bias="0.18">
 
         <LinearLayout
-            android:layout_width="104dp"
-            android:layout_height="126dp"
+            android:layout_width="105dp"
+            android:layout_height="89dp"
             android:orientation="vertical">
 
             <TextView
@@ -58,13 +58,13 @@
         </LinearLayout>
 
         <Space
-            android:layout_width="46dp"
-            android:layout_height="125dp"
+            android:layout_width="19dp"
+            android:layout_height="92dp"
             android:layout_weight="1" />
 
         <LinearLayout
-            android:layout_width="253dp"
-            android:layout_height="126dp"
+            android:layout_width="258dp"
+            android:layout_height="87dp"
             android:orientation="vertical">
 
             <TextView
@@ -85,20 +85,22 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="277dp"
-        android:layout_height="92dp"
+        android:layout_width="274dp"
+        android:layout_height="111dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.929">
+        app:layout_constraintVertical_bias="0.898">
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableBottom="@drawable/actualizar"
             android:text="Actualizar" />
 
         <Space
@@ -111,7 +113,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableBottom="@drawable/carpeta"
             android:text="Eliminar" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Elija una receta"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.063" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
