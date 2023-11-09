@@ -5,7 +5,7 @@
     <string name="nav_header_title">NutriLabel</string>
     <string name="nav_header_subtitle">Etiquetado Nutricional Chileno</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Ver tiendas en Map</string>
 
     <string name="menu_home">Agregar Receta</string>
     <string name="menu_gallery">Ver Receta</string>
