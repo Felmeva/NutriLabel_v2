@@ -24,10 +24,11 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
-    private Button agregarBt, actuaBt, elimBt, genEtBt;
+    private Button agregarBt, actuaBt, elimBt, genEtBt, descBt;
     private EditText nombre, ing1, ing2, ing3, gram1, gram2, gram3, codNum;
-
     private Spinner nomRec1, nomRec2;
+
+    private View view1, view2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         actuaBt = (Button)  findViewById(R.id.button2);
         elimBt = (Button) findViewById(R.id.button4);
         genEtBt = (Button) findViewById(R.id.button);
+        descBt = (Button) findViewById(R.id.button5);
 
         nombre = (EditText) findViewById(R.id.editTextText);
         ing1 = (EditText) findViewById(R.id.editTextText7);
@@ -49,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
         nomRec1 = (Spinner) findViewById(R.id.spinner);
         nomRec2 = (Spinner) findViewById(R.id.spinner4);
+
+        view1 = (View) findViewById(R.id.view);
+        view2 = (View) findViewById(R.id.view2);
 
 
 
