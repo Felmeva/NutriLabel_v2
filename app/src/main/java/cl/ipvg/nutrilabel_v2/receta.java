@@ -1,23 +1,25 @@
 package cl.ipvg.nutrilabel_v2;
 
 public class receta {
-    private int idreceta;
+    private int idReceta;
     private String nombreR;
 
     public receta() {
+        this.idReceta = 0;
+        this.nombreR = "";
     }
 
     public receta(int idreceta, String nombreR) {
-        this.idreceta = idreceta;
+        this.idReceta = idreceta;
         this.nombreR = nombreR;
     }
 
-    public int getIdreceta() {
-        return idreceta;
+    public int getIdReceta() {
+        return idReceta;
     }
 
-    public void setIdreceta(int idreceta) {
-        this.idreceta = idreceta;
+    public void setIdReceta(int idReceta) {
+        this.idReceta = idReceta;
     }
 
     public String getNombreR() {
@@ -31,7 +33,7 @@ public class receta {
     @Override
     public String toString() {
         return "receta{" +
-                "idreceta=" + idreceta +
+                "idreceta=" + idReceta +
                 ", nombreR='" + nombreR + '\'' +
                 '}';
     }
