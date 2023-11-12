@@ -24,17 +24,36 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
-
-
-
-
+    private Button crearBt, agregarBt, eliminarBt, generarBt, descBt;
+    private Spinner ing1, ing2, ing3, eti1;
+    private EditText editNomR, editGr1, editGr2, editGr3, editNomI, editE, editP, editGt, editHc, editS;
+    private View viewEt;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        crearBt = (Button) findViewById(R.id.button3);
+        agregarBt = (Button) findViewById(R.id.button2);
+        eliminarBt = (Button) findViewById(R.id.button4);
+        generarBt = (Button) findViewById(R.id.button);
+        descBt = (Button) findViewById(R.id.button5);
 
+        ing1 = (Spinner) findViewById(R.id.spinner2);
+        ing2 = (Spinner) findViewById(R.id.spinner3);
+        ing3 = (Spinner) findViewById(R.id.spinner5);
+        eti1 = (Spinner) findViewById(R.id.spinner);
 
+        editNomR = (EditText) findViewById(R.id.editTextText);
+        editGr1 = (EditText) findViewById(R.id.editTextText10);
+        editGr2 = (EditText) findViewById(R.id.editTextText11);
+        editGr3 = (EditText) findViewById(R.id.editTextText11);
+        editNomI = (EditText) findViewById(R.id.editTextText2);
+        editE = (EditText) findViewById(R.id.editTextText3);
+        editP = (EditText) findViewById(R.id.editTextText4);
+        editGt = (EditText) findViewById(R.id.editTextText5);
+        editHc = (EditText) findViewById(R.id.editTextText6);
+        editS = (EditText) findViewById(R.id.editTextText7);
 
-
+        viewEt = (View) findViewById(R.id.view2);
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
