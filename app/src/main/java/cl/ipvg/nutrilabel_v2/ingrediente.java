@@ -91,10 +91,10 @@ public class ingrediente {
         return "ingrediente{" +
                 "idIng=" + idIng +
                 ", nombre='" + nombre + '\'' +
-                ", energia=" + energia + '\'' +
-                ", proteinas=" + proteinas + '\'' +
-                ", grasasT=" + grasasT + '\'' +
-                ", HdC=" + HdC + '\'' +
+                ", energia=" + energia +
+                ", proteinas=" + proteinas +
+                ", grasasT=" + grasasT +
+                ", HdC=" + HdC +
                 ", sodio=" + sodio +
                 '}';
     }
