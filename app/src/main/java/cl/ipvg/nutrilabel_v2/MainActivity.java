@@ -3,13 +3,22 @@ package cl.ipvg.nutrilabel_v2;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -17,6 +26,12 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import cl.ipvg.nutrilabel_v2.clases.etiqueta;
+import cl.ipvg.nutrilabel_v2.clases.ingrediente;
 import cl.ipvg.nutrilabel_v2.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,9 +42,22 @@ public class MainActivity extends AppCompatActivity {
     private Button crearBt, agregarBt, eliminarBt, generarBt, descBt;
     private Spinner ing1, ing2, ing3, eti1;
     private EditText editNomR, editGr1, editGr2, editGr3, editNomI, editE, editP, editGt, editHc, editS;
-    private View viewEt;
+    private ListView listviewEt;
+
+    private List<ingrediente> ListIng = new ArrayList<ingrediente>();
+    private List<String> ListEti = new ArrayList<String>();
+
+    ArrayAdapter<ingrediente> arrayAdapterIngrediente;
+
+    ArrayAdapter<etiqueta> arrayAdapterEtiqueta;
+    ArrayAdapter<String> arrayAdapterString;
+
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         crearBt = (Button) findViewById(R.id.button3);
         agregarBt = (Button) findViewById(R.id.button2);
@@ -53,7 +81,25 @@ public class MainActivity extends AppCompatActivity {
         editHc = (EditText) findViewById(R.id.editTextText6);
         editS = (EditText) findViewById(R.id.editTextText7);
 
-        viewEt = (View) findViewById(R.id.view2);
+        listviewEt = (ListView) findViewById(R.id.ListviewEt);
+
+        inicializarFireBase();
+        listarDatosI();
+
+
+
+        agregarBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+
+
+            }
+        });
+
+
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -92,5 +138,36 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    private void listarDatosI() {
+        databaseReference.child("ingrediente").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ListIng.clear();
+                for (DataSnapshot objs : snapshot.getChildren()){
+                    ingrediente ing = objs.getValue(ingrediente.class);
+                    ListIng.add(ing);
+                    ListEti.add("" + ing.getIdIng()+" " + ing.getNombre()+" "+ ing.getEnergia()+ " " + ing.getProteinas() +" "+ ing.getGrasasT()+" "+ ing.getHdC() + " " + ing.getSodio());
+                    arrayAdapterString = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_expandable_list_item_1,ListEti);
+                    listviewEt.setAdapter(arrayAdapterString);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private void inicializarFireBase(){
+        FirebaseApp.initializeApp(this);
+        firebaseDatabase =FirebaseDatabase.getInstance();
+        databaseReference =firebaseDatabase.getReference();
     }
 }
