@@ -1,4 +1,4 @@
-package cl.ipvg.nutrilabel_v2;
+package cl.ipvg.nutrilabel_v2.clases;
 
 public class etiqueta {
 
