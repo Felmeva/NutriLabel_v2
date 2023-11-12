@@ -7,7 +7,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Ver tiendas en Map</string>
 
-    <string name="menu_home">Agregar Receta</string>
-    <string name="menu_gallery">Ver Receta</string>
+    <string name="menu_home">Crear Receta</string>
+    <string name="menu_gallery">Agregar Ingrediente</string>
     <string name="menu_slideshow">Generar etiqueta</string>
 </resources>
