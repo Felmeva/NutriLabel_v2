@@ -32,6 +32,7 @@ import java.util.UUID;
 
 import cl.ipvg.nutrilabel_v2.clases.etiqueta;
 import cl.ipvg.nutrilabel_v2.clases.ingrediente;
+import cl.ipvg.nutrilabel_v2.clases.receta;
 import cl.ipvg.nutrilabel_v2.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -102,6 +103,16 @@ public class MainActivity extends AppCompatActivity {
                 ing1.setSodio(editS.getText().length());
                 databaseReference.child("ingrediente").child(ing1.getIdIng()).setValue(ing1);
 
+            }
+        });
+
+        crearBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                receta recet1 = new receta();
+                recet1.setIdReceta(UUID.randomUUID().toString());
+                recet1.setNombreR(editNomR.getText().toString());
+                databaseReference.child("receta").child(recet1.getIdReceta()).setValue(recet1);
             }
         });
 
