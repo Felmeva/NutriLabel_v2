@@ -1,7 +1,7 @@
 package cl.ipvg.nutrilabel_v2.clases;
 
 public class ingrediente {
-    private int idIng;
+    private String idIng;
     private String nombre;
     private double energia;
     private double proteinas;
@@ -10,7 +10,7 @@ public class ingrediente {
     private double sodio;
 
     public ingrediente() {
-        this.idIng = 0;
+        this.idIng = "";
         this.nombre = "";
         this.energia = 0;
         this.proteinas = 0;
@@ -20,7 +20,7 @@ public class ingrediente {
 
     }
 
-    public ingrediente(int idIng ,String nombre, double energia, double proteinas, double grasasT, double HdC, double sodio) {
+    public ingrediente(String idIng ,String nombre, double energia, double proteinas, double grasasT, double HdC, double sodio) {
         this.nombre = nombre;
         this.energia = energia;
         this.proteinas = proteinas;
@@ -30,11 +30,11 @@ public class ingrediente {
         this.idIng = idIng;
     }
 
-    public int getIdIng() {
+    public String getIdIng() {
         return idIng;
     }
 
-    public void setIdIng(int idIng) {
+    public void setIdIng(String idIng) {
         this.idIng = idIng;
     }
 

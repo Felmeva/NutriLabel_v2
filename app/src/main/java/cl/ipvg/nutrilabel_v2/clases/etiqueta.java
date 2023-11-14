@@ -2,7 +2,7 @@ package cl.ipvg.nutrilabel_v2.clases;
 
 public class etiqueta {
 
-    private int idEtiqueta;
+    private String idEtiqueta;
     private String nombreEt;
 
     private double energiaEt, protEt, GrasEt, hdcEt, sodEt;
@@ -10,7 +10,7 @@ public class etiqueta {
     public etiqueta() {
     }
 
-    public etiqueta(int idEtiqueta, String nombreEt, double energiaEt, double protEt, double grasEt, double hdcEt, double sodEt) {
+    public etiqueta(String idEtiqueta, String nombreEt, double energiaEt, double protEt, double grasEt, double hdcEt, double sodEt) {
         this.idEtiqueta = idEtiqueta;
         this.nombreEt = nombreEt;
         this.energiaEt = energiaEt;
@@ -20,11 +20,11 @@ public class etiqueta {
         this.sodEt = sodEt;
     }
 
-    public int getIdEtiqueta() {
+    public String getIdEtiqueta() {
         return idEtiqueta;
     }
 
-    public void setIdEtiqueta(int idEtiqueta) {
+    public void setIdEtiqueta(String idEtiqueta) {
         this.idEtiqueta = idEtiqueta;
     }
 
