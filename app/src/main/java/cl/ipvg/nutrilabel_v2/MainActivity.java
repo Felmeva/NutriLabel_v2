@@ -92,9 +92,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
-
+                ingrediente ing1 = new ingrediente();
+                ing1.setIdIng(UUID.randomUUID().toString());
+                ing1.setNombre(editNomI.getText().toString());
+                ing1.setEnergia(editE.getText().length());
+                ing1.setProteinas(editP.getText().length());
+                ing1.setGrasasT(editGt.getText().length());
+                ing1.setHdC(editHc.getText().length());
+                ing1.setSodio(editS.getText().length());
+                databaseReference.child("ingrediente").child(ing1.getIdIng()).setValue(ing1);
 
             }
         });

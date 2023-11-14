@@ -98,4 +98,7 @@ public class ingrediente {
                 ", sodio=" + sodio +
                 '}';
     }
+
+
+
 }
