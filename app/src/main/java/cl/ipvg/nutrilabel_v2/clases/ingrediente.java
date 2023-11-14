@@ -100,5 +100,48 @@ public class ingrediente {
     }
 
 
+    public double calcularEner(double et, double g){
+        double energia;
 
+        energia = ((et * g)/100);
+
+
+        return energia;
+    }
+
+    public double calcularProte(double pt, double g){
+        double proteina;
+
+        proteina = ((pt * g)/100);
+
+
+        return proteina;
+    }
+
+    public double calcularGrasas(double gt, double g){
+        double grasas;
+
+        grasas = ((gt * g)/100);
+
+
+        return grasas;
+    }
+
+    public double calcularHdC(double hct, double g){
+        double hc;
+
+        hc = ((hct * g)/100);
+
+
+        return hc;
+    }
+
+    public double calcularSodio(double st, double g){
+        double sodio;
+
+        sodio = ((st * g)/100);
+
+
+        return sodio;
+    }
 }
