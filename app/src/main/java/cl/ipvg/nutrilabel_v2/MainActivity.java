@@ -74,25 +74,8 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        text1 = editE.getText().toString();
-        energiaI = Double.parseDouble(text1);
-        text2 = editP.getText().toString();
-        proteinasI = Double.parseDouble(text2);
-        text3 = editGt.getText().toString();
-        grasasI = Double.parseDouble(text3);
-        text4 = editHc.getText().toString();
-        HdcI = Double.parseDouble(text4);
-        text5 = editS.getText().toString();
-        sodioI = Double.parseDouble(text5);
-
-        etTex1 = editGr1.getText().toString();
-        etGr1 = Double.parseDouble(etTex1);
-
 
         ingrediente ing = new ingrediente();
-
-
-
 
         crearBt = (Button) findViewById(R.id.button3);
         agregarBt = (Button) findViewById(R.id.button2);
@@ -118,20 +101,10 @@ public class MainActivity extends AppCompatActivity {
 
         listviewEt = (ListView) findViewById(R.id.ListviewEt);
 
-
-
-
-
-        ;
-
-
         inicializarFireBase();
         listarDatosI();
         listarDatosR();
         listarDatosR();
-
-
-
 
 
         agregarBt.setOnClickListener(new View.OnClickListener() {
@@ -141,30 +114,41 @@ public class MainActivity extends AppCompatActivity {
                 ingrediente ing1 = new ingrediente();
                 ing1.setIdIng(UUID.randomUUID().toString());
                 ing1.setNombre(editNomI.getText().toString());
-                ing1.setEnergia(energiaI);
-                ing1.setProteinas(proteinasI);
-                ing1.setGrasasT(grasasI);
-                ing1.setHdC(HdcI);
-                ing1.setSodio(sodioI);
+                ing1.setEnergia(energiaI = Double.parseDouble(editE.getText().toString()));
+                ing1.setProteinas(proteinasI = Double.parseDouble(editP.getText().toString()));
+                ing1.setGrasasT(grasasI = Double.parseDouble(editGt.getText().toString()));
+                ing1.setHdC(HdcI = Double.parseDouble(editHc.getText().toString()));
+                ing1.setSodio(sodioI = Double.parseDouble(editS.getText().toString()));
                 databaseReference.child("ingrediente").child(ing1.getIdIng()).setValue(ing1);
 
             }
         });
 
-        crearBt.setOnClickListener(new View.OnClickListener() {
+        generarBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                receta recet1 = new receta();
-                recet1.setIdReceta(UUID.randomUUID().toString());
-                recet1.setNombreR(editNomR.getText().toString());
-                recet1.setEneR(ing.calcularEner(energiaI,etGr1));
-                recet1.setProR(ing.calcularProte(proteinasI, etGr1));
-                recet1.setGraR(ing.calcularGrasas(grasasI, etGr1));
-                recet1.setHdcR(ing.calcularHdC(HdcI, etGr1));
-                recet1.setSodR(ing.calcularSodio(sodioI, etGr1));
+                etiqueta eti = new etiqueta();
+                eti.setIdEtiqueta(UUID.randomUUID().toString());
+                eti.setNombreEt(editNomR.getText().toString());
+                eti.setEnergiaEt(ing.calcularEner(energiaI,etGr1));
+                eti.setProtEt(ing.calcularProte(proteinasI, etGr1));
+                eti.setGrasEt(ing.calcularGrasas(grasasI, etGr1));
+                eti.setHdcEt(ing.calcularHdC(HdcI, etGr1));
+                eti.setSodEt(ing.calcularSodio(sodioI, etGr1));
 
 
-                databaseReference.child("receta").child(recet1.getIdReceta()).setValue(recet1);
+                databaseReference.child("receta").child(eti.getIdEtiqueta()).setValue(eti);
+            }
+        });
+
+        crearBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                receta rec = new receta();
+                rec.setIdReceta(UUID.randomUUID().toString());
+                rec.setNombreR(editNomR.getText().toString());
+                rec.setGramos(etGr1 = Double.parseDouble(editGr1.getText().toString()));
+
             }
         });
 

@@ -4,13 +4,15 @@ public class receta {
     private String idReceta;
     private String nombreR;
 
-    private double eneR, proR, graR, hdcR, sodR;
+
+
+    private double eneR, proR, graR, hdcR, sodR, gramos;
 
     public receta() {
 
     }
 
-    public receta(String idReceta, String nombreR, double eneR, double proR, double graR, double hdcR, double sodR) {
+    public receta(String idReceta, String nombreR, double eneR, double proR, double graR, double hdcR, double sodR, double gramos) {
         this.idReceta = idReceta;
         this.nombreR = nombreR;
         this.eneR = eneR;
@@ -18,6 +20,7 @@ public class receta {
         this.graR = graR;
         this.hdcR = hdcR;
         this.sodR = sodR;
+        this.gramos = gramos;
     }
 
 
@@ -77,6 +80,14 @@ public class receta {
         this.sodR = sodR;
     }
 
+    public double getGramos() {
+        return gramos;
+    }
+
+    public void setGramos(double gramos) {
+        this.gramos = gramos;
+    }
+
     @Override
     public String toString() {
         return "receta{" +
@@ -87,8 +98,7 @@ public class receta {
                 ", graR=" + graR +
                 ", hdcR=" + hdcR +
                 ", sodR=" + sodR +
+                ", gramos=" + gramos +
                 '}';
     }
-
-
 }
