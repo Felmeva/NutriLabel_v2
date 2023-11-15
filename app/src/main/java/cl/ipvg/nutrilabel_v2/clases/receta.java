@@ -4,15 +4,22 @@ public class receta {
     private String idReceta;
     private String nombreR;
 
+    private double eneR, proR, graR, hdcR, sodR;
+
     public receta() {
-        this.idReceta = "";
-        this.nombreR = "";
+
     }
 
-    public receta(String idreceta, String nombreR) {
-        this.idReceta = idreceta;
+    public receta(String idReceta, String nombreR, double eneR, double proR, double graR, double hdcR, double sodR) {
+        this.idReceta = idReceta;
         this.nombreR = nombreR;
+        this.eneR = eneR;
+        this.proR = proR;
+        this.graR = graR;
+        this.hdcR = hdcR;
+        this.sodR = sodR;
     }
+
 
     public String getIdReceta() {
         return idReceta;
@@ -30,11 +37,58 @@ public class receta {
         this.nombreR = nombreR;
     }
 
+    public double getEneR() {
+        return eneR;
+    }
+
+    public void setEneR(double eneR) {
+        this.eneR = eneR;
+    }
+
+    public double getProR() {
+        return proR;
+    }
+
+    public void setProR(double proR) {
+        this.proR = proR;
+    }
+
+    public double getGraR() {
+        return graR;
+    }
+
+    public void setGraR(double graR) {
+        this.graR = graR;
+    }
+
+    public double getHdcR() {
+        return hdcR;
+    }
+
+    public void setHdcR(double hdcR) {
+        this.hdcR = hdcR;
+    }
+
+    public double getSodR() {
+        return sodR;
+    }
+
+    public void setSodR(double sodR) {
+        this.sodR = sodR;
+    }
+
     @Override
     public String toString() {
         return "receta{" +
-                "idreceta=" + idReceta +
+                "idReceta='" + idReceta + '\'' +
                 ", nombreR='" + nombreR + '\'' +
+                ", eneR=" + eneR +
+                ", proR=" + proR +
+                ", graR=" + graR +
+                ", hdcR=" + hdcR +
+                ", sodR=" + sodR +
                 '}';
     }
+
+
 }
