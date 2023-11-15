@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         inicializarFireBase();
         listarDatosI();
         listarDatosR();
-        listarDatosR();
+        listarDatosE();
 
 
         agregarBt.setOnClickListener(new View.OnClickListener() {
