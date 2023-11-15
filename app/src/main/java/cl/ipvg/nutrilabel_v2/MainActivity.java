@@ -40,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private double etGr1;
 
-    private String etTex1;
 
-    private String text1, text2, text3, text4, text5;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -91,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         editNomR = (EditText) findViewById(R.id.editTextText);
         editGr1 = (EditText) findViewById(R.id.editTextText10);
         editGr2 = (EditText) findViewById(R.id.editTextText11);
-        editGr3 = (EditText) findViewById(R.id.editTextText11);
+        editGr3 = (EditText) findViewById(R.id.editTextText12);
         editNomI = (EditText) findViewById(R.id.editTextText2);
         editE = (EditText) findViewById(R.id.editTextText3);
         editP = (EditText) findViewById(R.id.editTextText4);
