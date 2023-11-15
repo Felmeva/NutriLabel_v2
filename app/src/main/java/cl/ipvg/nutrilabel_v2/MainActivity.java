@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ingrediente ing = new ingrediente();
+
 
 
 
@@ -84,8 +86,17 @@ public class MainActivity extends AppCompatActivity {
 
         listviewEt = (ListView) findViewById(R.id.ListviewEt);
 
+        ing.calcularEner(editE.,);
+        ing.calcularProte();
+        ing.calcularGrasas();
+        ing.calcularHdC();
+        ing.calcularSodio();
+
+
         inicializarFireBase();
-        listarDatosI();
+        listarDatosEt();
+
+
 
 
 
@@ -115,8 +126,6 @@ public class MainActivity extends AppCompatActivity {
                 databaseReference.child("receta").child(recet1.getIdReceta()).setValue(recet1);
             }
         });
-
-
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -157,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private void listarDatosI() {
+    private void listarDatosEt() {
         databaseReference.child("ingrediente").addValueEventListener(new ValueEventListener() {
 
             @Override
