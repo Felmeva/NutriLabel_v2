@@ -107,11 +107,11 @@ public class MainActivity extends AppCompatActivity {
 
         listviewEt = (ListView) findViewById(R.id.ListviewEt);
 
-        ing.calcularEner(energiaI,etGr1);
-        ing.calcularProte(proteinasI, etGr1);
-        ing.calcularGrasas(grasasI, etGr1);
-        ing.calcularHdC(HdcI, etGr1);
-        ing.calcularSodio(sodioI, etGr1);
+
+
+
+
+        ;
 
 
         inicializarFireBase();
@@ -144,6 +144,13 @@ public class MainActivity extends AppCompatActivity {
                 receta recet1 = new receta();
                 recet1.setIdReceta(UUID.randomUUID().toString());
                 recet1.setNombreR(editNomR.getText().toString());
+                recet1.setEneR(ing.calcularEner(energiaI,etGr1));
+                recet1.setProR(ing.calcularProte(proteinasI, etGr1));
+                recet1.setGraR(ing.calcularGrasas(grasasI, etGr1));
+                recet1.setHdcR(ing.calcularHdC(HdcI, etGr1));
+                recet1.setSodR(ing.calcularSodio(sodioI, etGr1));
+
+
                 databaseReference.child("receta").child(recet1.getIdReceta()).setValue(recet1);
             }
         });
