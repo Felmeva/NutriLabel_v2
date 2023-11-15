@@ -52,9 +52,20 @@ public class MainActivity extends AppCompatActivity {
     private ListView listviewEt;
 
     private List<ingrediente> ListIng = new ArrayList<ingrediente>();
-    private List<String> ListEti = new ArrayList<String>();
+
+    private List<String> ListI = new ArrayList<String>();
+
+    private List<receta> ListRec = new ArrayList<receta>();
+
+    private List<String> ListR = new ArrayList<>();
+
+    private List<etiqueta> ListEti = new ArrayList<etiqueta>();
+
+    private List<String> ListE = new ArrayList<>();
 
     ArrayAdapter<ingrediente> arrayAdapterIngrediente;
+
+    ArrayAdapter<receta> arrayAdapterReceta;
 
     ArrayAdapter<etiqueta> arrayAdapterEtiqueta;
     ArrayAdapter<String> arrayAdapterString;
@@ -115,7 +126,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         inicializarFireBase();
-        listarDatosEt();
+        listarDatosI();
+        listarDatosR();
+        listarDatosR();
 
 
 
@@ -194,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private void listarDatosEt() {
+    private void listarDatosI() {
         databaseReference.child("ingrediente").addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -203,9 +216,11 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot objs : snapshot.getChildren()){
                     ingrediente ing = objs.getValue(ingrediente.class);
                     ListIng.add(ing);
-                    ListEti.add("" + ing.getIdIng()+" " + ing.getNombre()+" "+ ing.getEnergia()+ " " + ing.getProteinas() +" "+ ing.getGrasasT()+" "+ ing.getHdC() + " " + ing.getSodio());
-                    arrayAdapterString = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_expandable_list_item_1,ListEti);
-                    listviewEt.setAdapter(arrayAdapterString);
+                    ListI.add("" + ing.getNombre());
+                    arrayAdapterString = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_expandable_list_item_1,ListR);
+                    ing1.setAdapter(arrayAdapterString);
+                    ing2.setAdapter(arrayAdapterString);
+                    ing3.setAdapter(arrayAdapterString);
 
                 }
 
@@ -217,6 +232,49 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void listarDatosR(){
+        databaseReference.child("receta").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ListRec.clear();
+                for (DataSnapshot objs : snapshot.getChildren()){
+                    receta rec = objs.getValue(receta.class);
+                    ListRec.add(rec);
+                    ListR.add(""+ rec.getNombreR() + "" + rec.getEneR() + "" + rec.getProR() + "" + rec.getGraR() + "" + rec.getHdcR() + "" + rec.getSodR());
+                    arrayAdapterString = new ArrayAdapter<String>( MainActivity.this , android.R.layout.simple_expandable_list_item_1,ListE);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void listarDatosE(){
+        databaseReference.child("etiqueta").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ListEti.clear();
+                for (DataSnapshot objs : snapshot.getChildren()){
+                    etiqueta et = objs.getValue(etiqueta.class);
+                    ListEti.add(et);
+                    ListE.add("" + et.getNombreEt()+ "" + et.getEnergiaEt() + et.getProtEt() + "" + et.getGrasEt() + "" + et.getHdcEt() + "" + et.getSodEt());
+                    arrayAdapterString = new ArrayAdapter<String>( MainActivity.this , android.R.layout.simple_expandable_list_item_1, ListE);
+                    listviewEt.setAdapter(arrayAdapterString);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void inicializarFireBase(){
