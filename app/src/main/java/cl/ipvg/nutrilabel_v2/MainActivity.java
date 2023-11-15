@@ -36,7 +36,13 @@ import cl.ipvg.nutrilabel_v2.clases.receta;
 import cl.ipvg.nutrilabel_v2.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+    private double energiaI, proteinasI, grasasI, HdcI, sodioI;
 
+    private double etGr1;
+
+    private String etTex1;
+
+    private String text1, text2, text3, text4, text5;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -57,6 +63,21 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        text1 = editE.getText().toString();
+        energiaI = Double.parseDouble(text1);
+        text2 = editP.getText().toString();
+        proteinasI = Double.parseDouble(text2);
+        text3 = editGt.getText().toString();
+        grasasI = Double.parseDouble(text3);
+        text4 = editHc.getText().toString();
+        HdcI = Double.parseDouble(text4);
+        text5 = editS.getText().toString();
+        sodioI = Double.parseDouble(text5);
+
+        etTex1 = editGr1.getText().toString();
+        etGr1 = Double.parseDouble(etTex1);
+
+
         ingrediente ing = new ingrediente();
 
 
@@ -86,11 +107,11 @@ public class MainActivity extends AppCompatActivity {
 
         listviewEt = (ListView) findViewById(R.id.ListviewEt);
 
-        ing.calcularEner(editE.,);
-        ing.calcularProte();
-        ing.calcularGrasas();
-        ing.calcularHdC();
-        ing.calcularSodio();
+        ing.calcularEner(energiaI,etGr1);
+        ing.calcularProte(proteinasI, etGr1);
+        ing.calcularGrasas(grasasI, etGr1);
+        ing.calcularHdC(HdcI, etGr1);
+        ing.calcularSodio(sodioI, etGr1);
 
 
         inicializarFireBase();
@@ -107,11 +128,11 @@ public class MainActivity extends AppCompatActivity {
                 ingrediente ing1 = new ingrediente();
                 ing1.setIdIng(UUID.randomUUID().toString());
                 ing1.setNombre(editNomI.getText().toString());
-                ing1.setEnergia(editE.getText().length());
-                ing1.setProteinas(editP.getText().length());
-                ing1.setGrasasT(editGt.getText().length());
-                ing1.setHdC(editHc.getText().length());
-                ing1.setSodio(editS.getText().length());
+                ing1.setEnergia(energiaI);
+                ing1.setProteinas(proteinasI);
+                ing1.setGrasasT(grasasI);
+                ing1.setHdC(HdcI);
+                ing1.setSodio(sodioI);
                 databaseReference.child("ingrediente").child(ing1.getIdIng()).setValue(ing1);
 
             }
