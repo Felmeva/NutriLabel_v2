@@ -1,6 +1,8 @@
 package cl.ipvg.nutrilabel_v2;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
@@ -19,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -34,15 +37,21 @@ import cl.ipvg.nutrilabel_v2.clases.etiqueta;
 import cl.ipvg.nutrilabel_v2.clases.ingrediente;
 import cl.ipvg.nutrilabel_v2.clases.receta;
 import cl.ipvg.nutrilabel_v2.databinding.ActivityMainBinding;
+import cl.ipvg.nutrilabel_v2.databinding.FragmentGalleryBinding;
+import cl.ipvg.nutrilabel_v2.databinding.FragmentHomeBinding;
+import cl.ipvg.nutrilabel_v2.databinding.FragmentSlideshowBinding;
+import cl.ipvg.nutrilabel_v2.ui.gallery.GalleryFragment;
 
 public class MainActivity extends AppCompatActivity {
     private double energiaI, proteinasI, grasasI, HdcI, sodioI;
-
     private double etGr1;
-
-
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    private FragmentGalleryBinding galleryBinding;
+    private FragmentHomeBinding homeBinding;
+    private FragmentSlideshowBinding slideshowBinding;
+
+    private Layout layoutG, layoutH, layoutS;
 
     private Button crearBt, agregarBt, eliminarBt, generarBt, descBt;
     private Spinner ing1, ing2, ing3, eti1;
@@ -75,86 +84,40 @@ public class MainActivity extends AppCompatActivity {
 
         ingrediente ing = new ingrediente();
 
-        crearBt = (Button) findViewById(R.id.button3);
-        agregarBt = (Button) findViewById(R.id.button2);
-        eliminarBt = (Button) findViewById(R.id.button4);
-        generarBt = (Button) findViewById(R.id.button);
-        descBt = (Button) findViewById(R.id.button5);
+        crearBt = findViewById(R.id.button3);
+        agregarBt = findViewById(R.id.button2);
+        generarBt = findViewById(R.id.button);
+        descBt = findViewById(R.id.button5);
 
-        ing1 = (Spinner) findViewById(R.id.spinner2);
-        ing2 = (Spinner) findViewById(R.id.spinner3);
-        ing3 = (Spinner) findViewById(R.id.spinner5);
-        eti1 = (Spinner) findViewById(R.id.spinner);
+        ing1 = findViewById(R.id.spinner2);
+        ing2 = findViewById(R.id.spinner3);
+        ing3 = findViewById(R.id.spinner5);
+        eti1 = findViewById(R.id.spinner);
 
-        editNomR = (EditText) findViewById(R.id.editTextText);
-        editGr1 = (EditText) findViewById(R.id.editTextText10);
-        editGr2 = (EditText) findViewById(R.id.editTextText11);
-        editGr3 = (EditText) findViewById(R.id.editTextText12);
-        editNomI = (EditText) findViewById(R.id.editTextText2);
-        editE = (EditText) findViewById(R.id.editTextText3);
-        editP = (EditText) findViewById(R.id.editTextText4);
-        editGt = (EditText) findViewById(R.id.editTextText5);
-        editHc = (EditText) findViewById(R.id.editTextText6);
-        editS = (EditText) findViewById(R.id.editTextText7);
+        editNomR = findViewById(R.id.editTextText);
+        editGr1 = findViewById(R.id.editTextText10);
+        editGr2 = findViewById(R.id.editTextText11);
+        editGr3 = findViewById(R.id.editTextText12);
+        editNomI = findViewById(R.id.editTextText2);
+        editE = findViewById(R.id.editTextText3);
+        editP = findViewById(R.id.editTextText4);
+        editGt = findViewById(R.id.editTextText5);
+        editHc = findViewById(R.id.editTextText6);
+        editS = findViewById(R.id.editTextText7);
 
-        listviewEt = (ListView) findViewById(R.id.ListviewEt);
+        listviewEt = findViewById(R.id.ListviewEt);
 
         inicializarFireBase();
+
         listarDatosI();
         listarDatosR();
         listarDatosE();
-
-
-        agregarBt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ingrediente ing1 = new ingrediente();
-                ing1.setIdIng(UUID.randomUUID().toString());
-                ing1.setNombre(editNomI.getText().toString());
-                ing1.setEnergia(energiaI = Double.parseDouble(editE.getText().toString()));
-                ing1.setProteinas(proteinasI = Double.parseDouble(editP.getText().toString()));
-                ing1.setGrasasT(grasasI = Double.parseDouble(editGt.getText().toString()));
-                ing1.setHdC(HdcI = Double.parseDouble(editHc.getText().toString()));
-                ing1.setSodio(sodioI = Double.parseDouble(editS.getText().toString()));
-                databaseReference.child("ingrediente").child(ing1.getIdIng()).setValue(ing1);
-
-            }
-        });
-
-        generarBt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                etiqueta eti = new etiqueta();
-                eti.setIdEtiqueta(UUID.randomUUID().toString());
-                eti.setNombreEt(editNomR.getText().toString());
-                eti.setEnergiaEt(ing.calcularEner(energiaI,etGr1));
-                eti.setProtEt(ing.calcularProte(proteinasI, etGr1));
-                eti.setGrasEt(ing.calcularGrasas(grasasI, etGr1));
-                eti.setHdcEt(ing.calcularHdC(HdcI, etGr1));
-                eti.setSodEt(ing.calcularSodio(sodioI, etGr1));
-
-
-                databaseReference.child("receta").child(eti.getIdEtiqueta()).setValue(eti);
-            }
-        });
-
-        crearBt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                receta rec = new receta();
-                rec.setIdReceta(UUID.randomUUID().toString());
-                rec.setNombreR(editNomR.getText().toString());
-                rec.setGramos(etGr1 = Double.parseDouble(editGr1.getText().toString()));
-
-            }
-        });
-
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
+
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,6 +125,16 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
+
+
+
+
+
+
+
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -198,8 +171,8 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot objs : snapshot.getChildren()){
                     ingrediente ing = objs.getValue(ingrediente.class);
                     ListIng.add(ing);
-                    ListI.add("" + ing.getNombre());
-                    arrayAdapterString = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_expandable_list_item_1,ListR);
+                    ListI.add("" + ing.getNombre() + "" + ing.getEnergia() + "" + ing.getProteinas() + "" + ing.getGrasasT() + "" + ing.getHdC() + "" + ing.getSodio());
+                    arrayAdapterString = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_expandable_list_item_1,ListI);
                     ing1.setAdapter(arrayAdapterString);
                     ing2.setAdapter(arrayAdapterString);
                     ing3.setAdapter(arrayAdapterString);
@@ -246,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot objs : snapshot.getChildren()){
                     etiqueta et = objs.getValue(etiqueta.class);
                     ListEti.add(et);
-                    ListE.add("" + et.getNombreEt()+ "" + et.getEnergiaEt() + et.getProtEt() + "" + et.getGrasEt() + "" + et.getHdcEt() + "" + et.getSodEt());
+                    ListE.add("Etiqueta nutricional" + "" + et.getEnergiaEt() + et.getProtEt() + "" + et.getGrasEt() + "" + et.getHdcEt() + "" + et.getSodEt());
                     arrayAdapterString = new ArrayAdapter<String>( MainActivity.this , android.R.layout.simple_expandable_list_item_1, ListE);
                     listviewEt.setAdapter(arrayAdapterString);
                 }
